@@ -16,6 +16,9 @@ const EXERCISE_TYPES = ['cardio', 'strength', 'flexibility', 'balance'];
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
@@ -42,6 +45,7 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 
+app.use(cookieParser());
 
 app.use(cookieParser());
 
