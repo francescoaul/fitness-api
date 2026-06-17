@@ -19,31 +19,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const allowedOrigins = [
-  "http://localhost:5173",
-  "http://localhost:5174",
-  "http://localhost:5175",
-  "http://127.0.0.1:5173",
-  "http://127.0.0.1:5175",
-  "https://quick-flex-workout-app.vercel.app",
-  "https://quick-flex-workout-7790c8-francescaulino-protonmes-projects.vercel.app",
-  "https://quick-flex-workout-dl33fqf26-francescaulino-protonmes-projects.vercel.app",
-];
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
+// CORS 
 app.use(cors({
-  origin: function (origin, callback) {
-    if (!origin) return callback(null, true);
-
-    if (allowedOrigins.includes(origin)) {
-      return callback(null, true);
-    }
-
-    return callback(new Error(`CORS blocked for origin: ${origin}`));
-  },
+  origin: true,
   credentials: true,
   methods: ["GET", "POST", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
+
+app.use(cookieParser());
 
 app.use(cookieParser());
 
